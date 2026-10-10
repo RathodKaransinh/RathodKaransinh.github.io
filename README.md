@@ -5,8 +5,8 @@ Personal site — https://rathodkaransinh.github.io/
 | File | What it is |
 |---|---|
 | `index.html` | The portfolio. Single file: inline CSS, ~40 lines of vanilla JS, inline SVG diagram. No build step. |
-| `resume.html` / `resume.pdf` | A4 résumé **with photo** — the India-facing version, linked from the site. |
-| `resume-intl.html` / `resume-intl.pdf` | Same résumé **without photo**, for US/UK/EU applications. Not linked publicly; send the URL directly. |
+| `resume.html` / `resume.pdf` | A4 résumé, **no photo** — the default, linked from the site. |
+| `resume-with-photo.html` / `resume-with-photo.pdf` | Same résumé **with photo**, for applications where one is expected. Hosted but not linked; share the URL directly. |
 | `og.png` | 1200×630 link-preview card. |
 | `.nojekyll` | Serve files as-is; skip GitHub's Jekyll pass. |
 
@@ -16,7 +16,7 @@ The résumé uses `@page { margin: 0 }`, so the print dialog's margin and scale
 settings matter. Headless Chrome bypasses the dialog and cannot get them wrong:
 
 ```sh
-for v in resume resume-intl; do
+for v in resume resume-with-photo; do
   google-chrome --headless=new --no-pdf-header-footer \
     --print-to-pdf=$v.pdf $v.html
 done

@@ -33,7 +33,7 @@ html, body {
   padding: 0;
   /* Physical units + pt type keep screen and paper identical. */
   font-family: "Liberation Sans", "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
-  font-size: 9.3pt;
+  font-size: 9pt;
   line-height: 1.4;
   color: var(--ink);
   background: #525659;            /* Chrome's PDF-viewer grey */
@@ -207,6 +207,20 @@ li::marker { color: var(--accent); }
   .fab, .fab__label, .fab-hint { transition: none; }
   .fab:hover, .fab:focus-visible { transform: none; }
 }
+
+/* ---------- page-1 portrait ---------- */
+.resume-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 6mm; }
+.rh-text { min-width: 0; flex: 1 1 auto; }
+.rh-photo {
+  flex: 0 0 22mm;
+  width: 22mm;
+  height: 29.2mm;          /* 22mm at the photo's 0.754 aspect */
+  object-fit: cover;
+  border-radius: 1mm;
+  border: 0.25mm solid var(--rule);
+}
+@media print { .rh-photo { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
 </style>
 </head>
 <body>
@@ -234,6 +248,8 @@ li::marker { color: var(--accent); }
 <section class="page">
   <div class="page-body">
 
+    <div class="resume-head">
+    <div class="rh-text">
     <h1>Karansinh Rathod</h1>
     <p class="tagline"><strong>Software Engineer</strong> | Fintech Platforms · Python · Django · React · GCP · LLM/RAG</p>
     <p class="contact">
@@ -241,6 +257,9 @@ li::marker { color: var(--accent); }
       <a href="mailto:rathodkaransinh125@gmail.com">rathodkaransinh125@gmail.com</a> ·
       <a href="https://in.linkedin.com/in/karansinh-rathod-502383240">linkedin.com/in/karansinh-rathod-502383240</a>
     </p>
+    </div>
+    <img class="rh-photo" src="portrait.jpg" alt="Karansinh Rathod">
+    </div>
 
     <h2>Summary</h2>
     <p class="summary">Software engineer with nearly 3 years building and owning production fintech platforms at a SEBI-registered asset manager (₹3,000 Cr+ AUM, 800+ clients, PMS / AIF / GIFT-City IFSC mandates). Develops and maintains three in-house products end to end — investment research, an LLM research assistant, and investment operations — along with the market and fundamental data infrastructure that feeds all of them. Works across Python/Django and React on Google Cloud, with a strong bias toward automated testing, CI/CD, and replacing manual investment workflows with scheduled cloud jobs.</p>
