@@ -271,6 +271,21 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
 .btn-primary:hover { filter: brightness(1.1); color: #fff; }
 :root[data-theme="dark"] .btn-primary:hover { color: #06101a; }
 
+/* ---------- hero portrait ---------- */
+.hero-top { display: grid; gap: 30px; align-items: center; }
+.hero-copy { min-width: 0; }
+.portrait { margin: 0; max-width: 220px; }
+.portrait img {
+  display: block; width: 100%; height: auto;
+  border-radius: 5px;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+}
+@media (min-width: 900px) {
+  .hero-top { grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; }
+  .portrait { max-width: none; }
+}
+
 /* ---------- stat strip ---------- */
 .stats {
   display: grid;
@@ -478,6 +493,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
   <!-- ===================== HERO ===================== -->
   <div class="hero">
+    <div class="hero-top">
+    <div class="hero-copy">
     <p class="eyebrow">Ahmedabad, India &nbsp;·&nbsp; Fintech Platform Engineering</p>
     <h1>Karansinh Rathod</h1>
     <p class="role">Software Engineer &nbsp;—&nbsp; Sameeksha Capital</p>
@@ -489,6 +506,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
       <a class="btn" href="resume.pdf">Résumé (PDF)</a>
       <a class="btn" href="mailto:rathodkaransinh125@gmail.com">Email me</a>
       <a class="btn" href="https://in.linkedin.com/in/karansinh-rathod-502383240" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    </div>
+
+    <figure class="portrait">
+      <img src="portrait.jpg" width="760" height="1008"
+           alt="Karansinh Rathod, photographed in a dark suit and navy tie.">
+    </figure>
     </div>
 
     <div class="stats">
