@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karansinh Rathod — Resume</title>
+<style>
+/* ============================================================
+   1. PAGE RULE — margin:0 means the browser adds none of its own.
+   All whitespace comes from .page padding, which we control, so
+   what renders on screen is what lands in the PDF.
+   ============================================================ */
+@page { size: A4 portrait; margin: 0; }
+
+:root {
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --pad-x: 15mm;
+  --pad-t: 13mm;
+  --pad-b: 16mm;
+
+  --ink:    #16181d;
+  --muted:  #4a5159;
+  --soft:   #6b7280;
+  --rule:   #c9ced6;
+  --accent: #1f4e79;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  /* Physical units + pt type keep screen and paper identical. */
+  font-family: "Liberation Sans", "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 9.3pt;
+  line-height: 1.4;
+  color: var(--ink);
+  background: #525659;            /* Chrome's PDF-viewer grey */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ============================================================
+   2. PAGE BOX — one <section class="page"> == one sheet of A4.
+   Fixed height + overflow:hidden gives strict WYSIWYG: content
+   cannot silently reflow onto a sheet you did not design.
+   ============================================================ */
+.page {
+  position: relative;
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: var(--pad-t) var(--pad-x) var(--pad-b);
+  background: #fff;
+  overflow: hidden;
+  counter-increment: pagenum;
+
+  /* screen-only presentation */
+  margin: 8mm auto;
+  box-shadow: 0 2mm 6mm rgba(0, 0, 0, .45);
+
+  break-after: page;
+  page-break-after: always;
+}
+.page:last-of-type { break-after: auto; page-break-after: auto; }
+
+/* ---------- running header (page 2 onward) ---------- */
+.page-header {
+  position: absolute;
+  top: var(--pad-t); left: var(--pad-x); right: var(--pad-x);
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 2mm;
+  border-bottom: 0.4mm solid var(--accent);
+  font-size: 8pt;
+  letter-spacing: .02em;
+}
+.page-header .who { font-weight: 700; color: var(--accent); }
+.page-header .doc { color: var(--soft); }
+
+/* ---------- running footer ---------- */
+.page-footer {
+  position: absolute;
+  bottom: 8mm; left: var(--pad-x); right: var(--pad-x);
+  display: flex; justify-content: space-between;
+  padding-top: 1.8mm;
+  border-top: 0.25mm solid var(--rule);
+  font-size: 7.5pt;
+  color: var(--soft);
+}
+.page-footer .folio::after { content: counter(pagenum) " / " var(--total-pages, "?"); }
+
+.page-body { margin-top: 0; }
+.page--cont .page-body { margin-top: 10mm; }   /* clears the running header */
+
+/* ============================================================
+   3. PRINT OVERRIDES — strip screen chrome; leave only sheets.
+   ============================================================ */
+@media print {
+  html, body { background: #fff; width: var(--page-w); }
+  .page { margin: 0; box-shadow: none; }
+  .no-print { display: none !important; }
+}
+
+/* ============================================================
+   4. RESUME TYPOGRAPHY
+   ============================================================ */
+h1 { font-size: 21pt; line-height: 1.1; letter-spacing: -.015em; margin: 0 0 1mm; font-weight: 700; }
+
+.tagline { color: var(--muted); margin: 0 0 1.2mm; font-size: 10pt; }
+.tagline strong { color: var(--ink); font-weight: 650; }
+
+.contact { color: var(--muted); font-size: 8.8pt; margin: 0; }
+.contact a { color: var(--accent); text-decoration: none; }
+
+h2 {
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 5mm 0 1.8mm;
+  padding-bottom: 0.8mm;
+  border-bottom: 0.35mm solid var(--rule);
+}
+
+p { margin: 0 0 1.4mm; }
+
+.org { margin: 2.6mm 0 0.3mm; font-size: 10.2pt; }
+.org strong { font-weight: 700; }
+.org span { color: var(--muted); font-weight: 400; font-size: 9pt; }
+
+.role { color: var(--muted); font-style: italic; margin: 0 0 0.5mm; font-size: 9pt; }
+
+.lead { margin: 1.4mm 0 0.6mm; color: var(--muted); }
+
+.product {
+  margin: 2.4mm 0 0.4mm;
+  font-size: 9.6pt;
+  border-left: 0.7mm solid var(--accent);
+  padding-left: 2.2mm;
+}
+.product strong { font-weight: 700; }
+.product span { color: var(--soft); font-weight: 400; font-size: 8.7pt; }
+
+ul { margin: 0.8mm 0 0; padding-left: 4.6mm; }
+li { margin-bottom: 0.9mm; padding-left: 0.4mm; }
+li::marker { color: var(--accent); }
+
+.summary { text-align: justify; hyphens: auto; }
+.skills li { margin-bottom: 0.7mm; }
+
+.proj-stack { color: var(--soft); font-size: 8.6pt; margin: 0 0 0.6mm; }
+
+/* ============================================================
+   5. FLOATING DOWNLOAD BUTTON (screen only)
+   ============================================================ */
+.fab-wrap { position: fixed; bottom: 28px; right: 28px; z-index: 99; }
+
+.fab {
+  display: inline-flex; align-items: center;
+  height: 56px; padding: 0 16px;
+  border: none; border-radius: 28px;
+  background: var(--accent); color: #fff;
+  font: inherit; font-size: 13px; cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .34), 0 2px 5px rgba(0, 0, 0, .26);
+  transition: box-shadow .22s ease, transform .22s ease, background .18s ease;
+}
+.fab__icon { flex: 0 0 24px; display: grid; place-items: center; }
+.fab__label {
+  max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
+  margin-left: 0; font-weight: 650; letter-spacing: .01em;
+  transition: max-width .3s ease, opacity .22s ease, margin-left .3s ease;
+}
+.fab:hover, .fab:focus-visible {
+  background: #2a6299;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .42), 0 4px 8px rgba(0, 0, 0, .3);
+}
+.fab:focus-visible { outline: 3px solid #9ec5e8; outline-offset: 3px; }
+.fab:hover .fab__label, .fab:focus-visible .fab__label {
+  max-width: 170px; opacity: 1; margin-left: 10px;
+}
+.fab:active { transform: translateY(0); box-shadow: 0 3px 8px rgba(0, 0, 0, .3); }
+
+/* hover tooltip carrying the print-dialog settings */
+.fab-hint {
+  position: absolute; bottom: 68px; right: 0;
+  width: 260px; padding: 10px 12px;
+  background: #2b2f33; color: #e8eaed;
+  border-radius: 8px; font-size: 11.5px; line-height: 1.45;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+  opacity: 0; transform: translateY(4px); pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.fab-hint b { color: #fff; }
+.fab-wrap:hover .fab-hint, .fab:focus-visible ~ .fab-hint { opacity: 1; transform: translateY(0); }
+
+/* overflow guard badge — only ever visible on screen */
+.overflow-flag {
+  position: absolute; right: 0; bottom: 0;
+  background: #b3261e; color: #fff;
+  font-size: 8pt; font-weight: 700; padding: 1.5mm 3mm;
+  border-radius: 2mm 0 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab, .fab__label, .fab-hint { transition: none; }
+  .fab:hover, .fab:focus-visible { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="fab-wrap no-print">
+  <button class="fab" id="pdfBtn" type="button"
+          aria-label="Download PDF — opens the print dialog; choose Save as PDF">
+    <span class="fab__icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+    </span>
+    <span class="fab__label">Download PDF</span>
+  </button>
+  <div class="fab-hint" role="note">
+    In the print dialog choose <b>Save as PDF</b>, then set
+    <b>Margins: None</b>, <b>Scale: 100</b>, and untick
+    <b>Headers and footers</b>.
+  </div>
+</div>
+
+<!-- ======================= PAGE 1 ======================= -->
+<section class="page">
+  <div class="page-body">
+
+    <h1>Karansinh Rathod</h1>
+    <p class="tagline"><strong>Software Engineer</strong> | Fintech Platforms · Python · Django · React · GCP · LLM/RAG</p>
+    <p class="contact">
+      Ahmedabad, Gujarat · +91 63535 19944 ·
+      <a href="mailto:rathodkaransinh125@gmail.com">rathodkaransinh125@gmail.com</a> ·
+      <a href="https://in.linkedin.com/in/karansinh-rathod-502383240">linkedin.com/in/karansinh-rathod-502383240</a>
+    </p>
+
+    <h2>Summary</h2>
+    <p class="summary">Software engineer with nearly 3 years building and owning production fintech platforms at a SEBI-registered asset manager (₹3,000 Cr+ AUM, 800+ clients, PMS / AIF / GIFT-City IFSC mandates). Develops and maintains three in-house products end to end — investment research, an LLM research assistant, and investment operations — along with the market and fundamental data infrastructure that feeds all of them. Works across Python/Django and React on Google Cloud, with a strong bias toward automated testing, CI/CD, and replacing manual investment workflows with scheduled cloud jobs.</p>
+
+    <h2>Experience</h2>
+
+    <p class="org"><strong>Sameeksha Capital</strong> <span>— SEBI-registered boutique asset management firm</span></p>
+    <p class="role">Software Engineer · May 2024 – Present</p>
+    <p class="role">Software Engineering Intern · Jan 2024 – Apr 2024 (converted to full-time)</p>
+    <p class="lead">Develop and maintain three in-house platforms end to end — architecture, core functionality, data layer and operations — used daily across the research, investment and operations desks.</p>
+
+    <p class="product"><strong>RAW — Research Automation Works</strong> <span>· research platform for ~40 analysts and Investment Committee members across a ~2,600-company universe</span></p>
+    <ul>
+      <li>Built the core research workspace: research notes, quarterly results, financial statements, CIO decisions and company coverage, on Django REST + React/TypeScript.</li>
+      <li><strong>Analyst Portfolio Simulator:</strong> simulates each analyst's recommendations as real order executions against Sameeksha's portfolio, then scores analyst performance with the same portfolio analytics used for live funds — surfaced in a Performance Dashboard that makes research calls measurable.</li>
+      <li>Role-based access with row-level security by country, sector and company; real-time collaborative comments over Django Channels WebSockets.</li>
+      <li>Automated research intake through 32 scheduled jobs and 20+ scrapers: corporate announcements, corporate actions and news, BSE insider trades, G-Sec yields, and management interviews transcribed with Whisper and summarized by Gemini.</li>
+    </ul>
+
+    <p class="product"><strong>RAW AI</strong> <span>· retrieval assistant answering research questions over RAW as its primary source</span></p>
+    <ul>
+      <li>Built the RAG system over proprietary research and public filings: concalls, annual reports and investor presentations parsed with Document AI and LlamaParse, chunked, embedded into pgvector, reranked, and answered with citations back to the source document.</li>
+      <li><strong>Result Update Report pipeline:</strong> drafts an analyst's quarterly result update for a company from its concall transcript, investor presentation and earnings report PDF — a finely-grained section-wise prompt generates topline, margin, bottomline and segment performance along with actuals versus management guidance, each section grounded in the source documents.</li>
+    </ul>
+
+    <p class="product"><strong>OAT — Operation Automation Toolkit</strong> <span>· order management and portfolio analytics for ~15 operations and portfolio staff</span></p>
+    <ul>
+      <li><strong>Order engine:</strong> buy/sell/ETF order calculators with T+1 cash and settlement logic, percentage-of-volume allocation and contract-note processing; custodian order files generated, validated and delivered automatically.</li>
+      <li><strong>Trade Suggestions:</strong> merges analyst recommendations raised in RAW with Sameeksha's live portfolio positions to compute actionable trade suggestions — closing the loop from research call to execution.</li>
+      <li><strong>Portfolio analytics and reporting:</strong> XIRR/TWRR performance and benchmark reporting, management-fee billing, and custody and fund-accountant reconciliation.</li>
+      <li>Integrated Zerodha Kite, Interactive Brokers, Nuvama and Zoho CRM; built an operations-checklist engine running 10 automated checks with Google Chat alerts, plus natural-language portfolio Q&amp;A (text-to-SQL with Gemini, guarded by a SQL validator).</li>
+    </ul>
+
+    <p class="product"><strong>Engineering practice</strong> <span>· across all three platforms</span></p>
+    <ul>
+      <li>12,000+ automated tests behind an 80% coverage gate, with Bitbucket CI/CD, blue/green App Engine deploys and one-step rollback.</li>
+    </ul>
+
+  </div>
+
+  <div class="page-footer">
+    <span>Karansinh Rathod · Software Engineer</span>
+    <span class="folio"></span>
+  </div>
+</section>
+
+<!-- ======================= PAGE 2 ======================= -->
+<section class="page page--cont">
+  <div class="page-header">
+    <span class="who">Karansinh Rathod</span>
+    <span class="doc">Software Engineer — Resume</span>
+  </div>
+
+  <div class="page-body">
+
+    <h2>Experience (continued)</h2>
+
+    <p class="org"><strong>TatvaSoft</strong> <span>— Software development company</span></p>
+    <p class="role">Software Development Intern · Jul 2023 – Aug 2023</p>
+    <ul>
+      <li>Built the frontend of a book-store web application in React.js.</li>
+    </ul>
+
+    <h2>Selected Projects</h2>
+    <p class="lead">Platform and tooling work at Sameeksha Capital that serves all three products above.</p>
+
+    <p class="org"><strong>Market Data Pipeline</strong> <span>— Sameeksha Capital · 2024 – 2025</span></p>
+    <p class="proj-stack">Python · Cloud Run · Zerodha KiteConnect · Interactive Brokers · PostgreSQL</p>
+    <ul>
+      <li>Designed broker adapters that normalize two very different market-data sources behind one interface — KiteConnect for Indian listed equities and IBKR for international coverage — writing live and historical prices into PostgreSQL.</li>
+      <li>Built 7 Cloud Run jobs covering daily, intraday and VWAP prices, IBKR prices and USD/INR rates, and shipped a shared Python library installed into all three platforms as their single market-data access layer.</li>
+      <li>Replaced a dedicated always-on VM that held an 8.5-hour websocket connection with scheduled Kite quote pulls, removing a standing point of failure and its compute cost.</li>
+    </ul>
+
+    <p class="org"><strong>Financial Data Pipeline</strong> <span>— Sameeksha Capital · 2025</span></p>
+    <p class="proj-stack">Python · ACE Equity · PostgreSQL · Cloud Scheduler</p>
+    <ul>
+      <li>Built the firm's fundamental data store: quarterly and annual results and full financial statements loaded into PostgreSQL through the ACE Equity Excel plugin instead of a vendor data API.</li>
+      <li>Saved lakhs per annum in data-vendor API licensing while giving RAW and OAT direct SQL access to standardized financials for screening, valuation and analysis.</li>
+    </ul>
+
+    <p class="org"><strong>Claude PR Review Bot</strong> <span>— Sameeksha Capital · 2025</span></p>
+    <p class="proj-stack">Python · Docker · Claude API · Bitbucket Pipes</p>
+    <ul>
+      <li>Built a reusable Bitbucket Pipe that reviews every pull request with Claude in two stages: it first explores the repository with tools, then returns a structured assessment as inline PR comments.</li>
+      <li>Each repository's CLAUDE.md acts as its review rulebook. The pipe is versioned, tested and runs in CI across 5 production repositories.</li>
+    </ul>
+
+    <h2>Technical Skills</h2>
+    <ul class="skills">
+      <li><strong>Languages:</strong> Python, TypeScript, JavaScript, SQL, HTML/CSS</li>
+      <li><strong>Backend:</strong> Django, Django REST Framework, Django Channels (WebSockets), scheduled batch jobs, REST APIs, OAuth 2.0, JWT</li>
+      <li><strong>Frontend:</strong> React, TypeScript, Vite, Material UI, AG Grid, Recharts, Vitest, React Testing Library</li>
+      <li><strong>Data:</strong> PostgreSQL, pgvector, pandas, NumPy, SQL migrations, Selenium, Playwright, BeautifulSoup</li>
+      <li><strong>AI / LLM:</strong> RAG pipelines, embeddings, reranking, prompt engineering, text-to-SQL, Gemini, Claude, OpenAI, Whisper, Document AI, LlamaParse</li>
+      <li><strong>Cloud and DevOps:</strong> Google Cloud (App Engine, Cloud Run, Cloud SQL, Cloud Storage, Cloud Scheduler, Cloud Build, Artifact Registry), Docker, Bitbucket Pipelines CI/CD, Git, LaunchDarkly</li>
+      <li><strong>Testing:</strong> pytest, Factory Boy, unit/integration/end-to-end suites, coverage gates</li>
+      <li><strong>Capital markets domain:</strong> PMS, AIF and GIFT-City IFSC mandates; order management and execution workflow; T+1 cash and settlement; percentage-of-volume allocation; contract notes and custodian files; XIRR/TWRR and benchmark performance; management-fee billing; custody and fund-accountant reconciliation; corporate actions and announcements</li>
+      <li><strong>Market and fundamental data:</strong> Zerodha KiteConnect, Interactive Brokers, Nuvama, ACE Equity, BSE filings, G-Sec yields, USD/INR</li>
+    </ul>
+
+    <h2>Education</h2>
+    <p><strong>L.D. College of Engineering</strong>, Ahmedabad — B.E. in Computer Engineering · 2020 – 2024</p>
+
+  </div>
+
+  <div class="page-footer">
+    <span>Karansinh Rathod · Software Engineer</span>
+    <span class="folio"></span>
+  </div>
+</section>
+
+<script>
+(function () {
+  var pages = document.querySelectorAll('.page');
+
+  /* Footer folio total, driven by the CSS counter. */
+  document.documentElement.style.setProperty('--total-pages', '"' + pages.length + '"');
+
+  document.getElementById('pdfBtn').addEventListener('click', function () {
+    window.print();
+  });
+
+  /* ---- overflow guard ------------------------------------------------
+     Strict mode clips anything past 297mm. Silent clipping is the one
+     real hazard of this layout, so measure each sheet after layout and
+     flag it on screen. Screen-only: the badge carries .no-print.      */
+  function checkOverflow() {
+    pages.forEach(function (pg, i) {
+      var body = pg.querySelector('.page-body');
+      if (!body) return;
+
+      var old = pg.querySelector('.overflow-flag');
+      if (old) old.remove();
+
+      var padB = parseFloat(getComputedStyle(pg).paddingBottom) || 0;
+      var limit = pg.getBoundingClientRect().bottom - padB;
+      var over = body.getBoundingClientRect().bottom - limit;
+
+      if (over > 1) {
+        var mm = (over / (pg.getBoundingClientRect().height / 297)).toFixed(1);
+        var flag = document.createElement('div');
+        flag.className = 'overflow-flag no-print';
+        flag.textContent = 'Page ' + (i + 1) + ' overflows by ~' + mm + 'mm — content is being clipped';
+        pg.appendChild(flag);
+        console.warn('[resume] page ' + (i + 1) + ' overflows by ~' + mm + 'mm');
+      }
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(checkOverflow);
+  } else {
+    window.addEventListener('load', checkOverflow);
+  }
+  window.addEventListener('resize', checkOverflow);
+})();
+</script>
+</body>
+</html>

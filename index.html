@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Karansinh Rathod — Software Engineer</title>
+<meta name="description" content="Karansinh Rathod builds the research, AI-retrieval and investment-operations platforms a SEBI-registered asset manager runs on, plus the market and fundamental data layer underneath them.">
+<meta name="author" content="Karansinh Rathod">
+<link rel="canonical" href="https://rathodkaransinh.github.io/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1219" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Karansinh Rathod">
+<meta property="og:title" content="Karansinh Rathod — Software Engineer">
+<meta property="og:description" content="Karansinh Rathod builds the research, AI-retrieval and investment-operations platforms a SEBI-registered asset manager runs on, plus the market and fundamental data layer underneath them.">
+<meta property="og:url" content="https://rathodkaransinh.github.io/">
+<meta property="og:image" content="https://rathodkaransinh.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Karansinh Rathod — Software Engineer">
+<meta name="twitter:description" content="Karansinh Rathod builds the research, AI-retrieval and investment-operations platforms a SEBI-registered asset manager runs on, plus the market and fundamental data layer underneath them.">
+<meta name="twitter:image" content="https://rathodkaransinh.github.io/og.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* reset the artifact skeleton used to supply */
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* ============================================================
+   TOKENS — complete light palette on bare :root
+   ============================================================ */
+:root {
+  --ground:      #eef1f5;
+  --surface:     #ffffff;
+  --surface-2:   #e5eaf0;
+  --ink:         #0e1a24;
+  --ink-2:       #334453;
+  --muted:       #5d6e7c;
+  --faint:       #8697a4;
+  --rule:        #d2dae2;
+  --rule-strong: #b3c0cc;
+  --accent:      #1b4d7a;
+  --accent-soft: #dce6f0;
+  --brass:       #9a6912;
+  --brass-soft:  #f2e6cd;
+  --up:          #0e7c5a;
+  --down:        #b3261e;
+  --shadow:      0 1px 2px rgba(14,26,36,.06), 0 8px 24px -12px rgba(14,26,36,.18);
+
+  --f-sans:  "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --f-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+
+  --maxw: 1080px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:      #0b1219;
+    --surface:     #111c25;
+    --surface-2:   #18252f;
+    --ink:         #e4ecf3;
+    --ink-2:       #c2d0dc;
+    --muted:       #90a2b1;
+    --faint:       #6b7e8d;
+    --rule:        #22323f;
+    --rule-strong: #35495a;
+    --accent:      #6ba7dd;
+    --accent-soft: #15293c;
+    --brass:       #d9a441;
+    --brass-soft:  #2e2516;
+    --up:          #3fb98a;
+    --down:        #e8705f;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:      #0b1219;
+  --surface:     #111c25;
+  --surface-2:   #18252f;
+  --ink:         #e4ecf3;
+  --ink-2:       #c2d0dc;
+  --muted:       #90a2b1;
+  --faint:       #6b7e8d;
+  --rule:        #22323f;
+  --rule-strong: #35495a;
+  --accent:      #6ba7dd;
+  --accent-soft: #15293c;
+  --brass:       #d9a441;
+  --brass-soft:  #2e2516;
+  --up:          #3fb98a;
+  --down:        #e8705f;
+  --shadow:      0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+/* mono eyebrow label — the recurring structural device */
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.topbar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 40;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 56px;
+}
+.mark {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.mark span { color: var(--brass); }
+
+.nav {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav a {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.nav a:hover { color: var(--ink); background: var(--surface-2); }
+.nav a.active { color: var(--accent); }
+
+.theme-btn {
+  flex: 0 0 auto;
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.theme-btn:hover { color: var(--ink); border-color: var(--rule-strong); }
+.theme-btn svg { width: 16px; height: 16px; }
+:root[data-theme="dark"] .i-sun, :root:not([data-theme="light"]) .i-sun { display: block; }
+.i-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .i-sun { display: none; }
+  :root:not([data-theme="light"]) .i-moon { display: block; }
+}
+:root[data-theme="dark"] .i-sun { display: none; }
+:root[data-theme="dark"] .i-moon { display: block; }
+:root[data-theme="light"] .i-sun { display: block; }
+:root[data-theme="light"] .i-moon { display: none; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { padding-block: 64px 48px; }
+.hero h1 {
+  font-size: clamp(38px, 7vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -.03em;
+  font-weight: 600;
+  margin-block: 14px 0;
+}
+.hero .role {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: .04em;
+  margin-top: 10px;
+}
+.thesis {
+  font-family: var(--f-serif);
+  font-size: clamp(19px, 2.4vw, 25px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 34ch;
+  margin-top: 26px;
+}
+.thesis b { font-weight: 600; color: var(--ink); font-style: normal; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.btn {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 11px 18px;
+  border-radius: 3px;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+:root[data-theme="dark"] .btn-primary,
+:root:not([data-theme="light"]) .btn-primary { color: #06101a; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .btn-primary { color: #fff; }
+}
+.btn-primary:hover { filter: brightness(1.1); color: #fff; }
+:root[data-theme="dark"] .btn-primary:hover { color: #06101a; }
+
+/* ---------- stat strip ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-top: 44px;
+}
+.stat { padding: 18px 20px 16px 0; border-right: 1px solid var(--rule); }
+.stat:last-child { border-right: 0; }
+.stat .v {
+  font-family: var(--f-mono);
+  font-size: clamp(20px, 2.6vw, 27px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.stat .k { margin-top: 4px; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section { padding-block: 56px; border-top: 1px solid var(--rule); }
+section:first-of-type { border-top: 0; }
+
+.sec-head { margin-bottom: 28px; }
+.sec-head h2 {
+  font-size: clamp(25px, 3.4vw, 34px);
+  letter-spacing: -.022em;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.sec-head p { color: var(--muted); max-width: 62ch; margin: 10px 0 0; }
+
+/* ---------- architecture diagram ---------- */
+.diagram-scroll { overflow-x: auto; padding-bottom: 6px; }
+.diagram { min-width: 760px; width: 100%; height: auto; display: block; }
+.d-box     { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1; }
+.d-box-hl  { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+.d-title   { fill: var(--ink); font-family: var(--f-mono); font-size: 12px; font-weight: 600; }
+.d-sub     { fill: var(--muted); font-family: var(--f-sans); font-size: 10.5px; }
+.d-col     { fill: var(--faint); font-family: var(--f-mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; }
+.d-line    { stroke: var(--rule-strong); stroke-width: 1.2; fill: none; }
+.d-loop    { stroke: var(--brass); stroke-width: 1.6; fill: none; stroke-dasharray: 4 3; }
+.d-loop-t  { fill: var(--brass); font-family: var(--f-mono); font-size: 10px; font-weight: 600; }
+.d-head    { fill: var(--ground); stroke: var(--rule); stroke-width: 1; }
+
+/* ---------- platform cards ---------- */
+.platforms { display: grid; gap: 18px; }
+.platform {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.platform > header {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+  padding-bottom: 12px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.platform h3 { font-size: 19px; letter-spacing: -.01em; }
+.platform .abbr {
+  font-family: var(--f-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; color: var(--brass);
+  background: var(--brass-soft); padding: 3px 7px; border-radius: 3px;
+}
+.platform .users { margin-left: auto; font-size: 12.5px; color: var(--muted); font-family: var(--f-mono); }
+.platform ul { margin: 0; padding-left: 18px; display: grid; gap: 9px; }
+.platform li { color: var(--ink-2); font-size: 14.8px; }
+.platform li::marker { color: var(--rule-strong); }
+.platform li b { color: var(--ink); font-weight: 600; }
+
+/* ---------- project rows ---------- */
+.projects { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.project {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding-block: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.project h3 { font-size: 18px; letter-spacing: -.01em; }
+.project .stack {
+  font-family: var(--f-mono); font-size: 11.5px; color: var(--faint);
+  margin-top: 5px; letter-spacing: .02em;
+}
+.project ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+.project li { color: var(--ink-2); font-size: 14.8px; }
+.project li::marker { color: var(--rule-strong); }
+.project .win {
+  display: inline-block; margin-top: 2px;
+  font-family: var(--f-mono); font-size: 11.5px; font-weight: 600;
+  color: var(--up); letter-spacing: .02em;
+}
+
+/* ---------- skills ledger ---------- */
+.ledger { border-top: 1px solid var(--rule); }
+.row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 8px 24px;
+  padding-block: 13px;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.row dt {
+  font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
+  padding-top: 3px;
+}
+.row dd { margin: 0; color: var(--ink-2); font-size: 14.8px; }
+.row:hover dt { color: var(--accent); }
+
+/* ---------- timeline ---------- */
+.timeline { display: grid; gap: 0; }
+.tl {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 6px 24px;
+  padding-block: 22px;
+  border-bottom: 1px solid var(--rule);
+}
+.tl:first-child { border-top: 1px solid var(--rule); }
+.tl .when {
+  font-family: var(--f-mono); font-size: 12px; color: var(--faint);
+  font-variant-numeric: tabular-nums; padding-top: 3px;
+}
+.tl h3 { font-size: 17px; }
+.tl .what { color: var(--muted); font-size: 13.5px; margin-top: 2px; }
+.tl .note { color: var(--ink-2); font-size: 14.6px; margin-top: 9px; }
+
+/* ---------- contact ---------- */
+.contact-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.ccard {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px;
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+}
+.ccard:hover { border-color: var(--accent); }
+.ccard .k { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.ccard .v { margin-top: 7px; font-size: 15px; word-break: break-word; }
+
+footer.foot {
+  border-top: 1px solid var(--rule);
+  padding-block: 28px 44px;
+  color: var(--faint);
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  display: flex; flex-wrap: wrap; gap: 10px 20px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (min-width: 780px) {
+  .project { grid-template-columns: 290px 1fr; gap: 28px; }
+  .platforms { gap: 20px; }
+}
+@media (max-width: 700px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-right: 0; padding-right: 12px; }
+  .stat:nth-child(odd) { border-right: 1px solid var(--rule); padding-right: 18px; }
+  .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  .row { grid-template-columns: 1fr; gap: 4px; }
+  .tl  { grid-template-columns: 1fr; gap: 3px; }
+  .hero { padding-block: 40px 36px; }
+  section { padding-block: 44px; }
+  .nav { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top">KR<span>.</span></a>
+    <nav class="nav" id="nav">
+      <a href="#platforms">Platforms</a>
+      <a href="#infrastructure">Infrastructure</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<div class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <div class="hero">
+    <p class="eyebrow">Ahmedabad, India &nbsp;·&nbsp; Fintech Platform Engineering</p>
+    <h1>Karansinh Rathod</h1>
+    <p class="role">Software Engineer &nbsp;—&nbsp; Sameeksha Capital</p>
+
+    <p class="thesis">I build the systems an asset manager actually runs on: <b>research</b>, <b>AI retrieval</b> and <b>investment operations</b> — plus the market and fundamental data layer underneath all three.</p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#platforms">See the platforms</a>
+      <a class="btn" href="resume.pdf">Résumé (PDF)</a>
+      <a class="btn" href="mailto:rathodkaransinh125@gmail.com">Email me</a>
+      <a class="btn" href="https://in.linkedin.com/in/karansinh-rathod-502383240" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">₹3,000 Cr+</div><div class="k">AUM running on the platforms I build</div></div>
+      <div class="stat"><div class="v">800+</div><div class="k">client portfolios under management</div></div>
+      <div class="stat"><div class="v">~2,600</div><div class="k">companies in the research universe</div></div>
+      <div class="stat"><div class="v">12,000+</div><div class="k">automated tests behind an 80% gate</div></div>
+    </div>
+  </div>
+
+  <!-- ===================== SYSTEM ===================== -->
+  <section id="system">
+    <div class="sec-head">
+      <p class="eyebrow">The system</p>
+      <h2>How the pieces fit together</h2>
+      <p>Three platforms sit on a shared data layer I also own. Market prices, standardised financials and corporate filings flow in on a schedule; research flows out as recommendations — and those recommendations loop back into execution.</p>
+    </div>
+
+    <div class="diagram-scroll">
+      <svg class="diagram" viewBox="0 0 760 340" role="img" aria-label="Architecture diagram: external sources feed three data pipelines, which feed the RAW, RAW AI and OAT platforms. Analyst recommendations loop from RAW into OAT, and are replayed by the Analyst Portfolio Simulator.">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--rule-strong)"/>
+          </marker>
+          <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--brass)"/>
+          </marker>
+        </defs>
+
+        <text class="d-col" x="12"  y="20">SOURCES</text>
+        <text class="d-col" x="246" y="20">DATA LAYER</text>
+        <text class="d-col" x="488" y="20">PLATFORMS</text>
+
+        <g>
+          <rect class="d-head" x="12" y="34"  width="186" height="34" rx="4"/>
+          <text class="d-title" x="24" y="55">Zerodha Kite · IBKR</text>
+          <rect class="d-head" x="12" y="78"  width="186" height="34" rx="4"/>
+          <text class="d-title" x="24" y="99">ACE Equity</text>
+          <rect class="d-head" x="12" y="122" width="186" height="34" rx="4"/>
+          <text class="d-title" x="24" y="143">BSE filings · news</text>
+          <rect class="d-head" x="12" y="166" width="186" height="34" rx="4"/>
+          <text class="d-title" x="24" y="187">Concalls · PPT · PDF</text>
+        </g>
+
+        <g>
+          <rect class="d-box" x="246" y="34" width="196" height="54" rx="5"/>
+          <text class="d-title" x="260" y="55">Market Data Pipeline</text>
+          <text class="d-sub"   x="260" y="73">7 Cloud Run jobs · shared library</text>
+
+          <rect class="d-box" x="246" y="100" width="196" height="54" rx="5"/>
+          <text class="d-title" x="260" y="121">Financial Data Pipeline</text>
+          <text class="d-sub"   x="260" y="139">quarterly &amp; annual financials</text>
+
+          <rect class="d-box" x="246" y="166" width="196" height="54" rx="5"/>
+          <text class="d-title" x="260" y="187">Scrapers &amp; Intake</text>
+          <text class="d-sub"   x="260" y="205">32 scheduled jobs · 20+ scrapers</text>
+        </g>
+
+        <g>
+          <rect class="d-box-hl" x="488" y="34" width="200" height="54" rx="5"/>
+          <text class="d-title" x="502" y="55">RAW</text>
+          <text class="d-sub"   x="502" y="73">research · ~40 analysts</text>
+
+          <rect class="d-box-hl" x="488" y="100" width="200" height="54" rx="5"/>
+          <text class="d-title" x="502" y="121">RAW AI</text>
+          <text class="d-sub"   x="502" y="139">RAG retrieval &amp; report drafting</text>
+
+          <rect class="d-box-hl" x="488" y="166" width="200" height="54" rx="5"/>
+          <text class="d-title" x="502" y="187">OAT</text>
+          <text class="d-sub"   x="502" y="205">orders · portfolio analytics</text>
+        </g>
+
+        <path class="d-line" d="M198 51 H246"             marker-end="url(#ah)"/>
+        <path class="d-line" d="M198 95 H222 V127 H246"   marker-end="url(#ah)"/>
+        <path class="d-line" d="M198 139 H214 V193 H246"  marker-end="url(#ah)"/>
+        <path class="d-line" d="M198 183 H206 V199 H246"  marker-end="url(#ah)"/>
+
+        <path class="d-line" d="M442 61 H488"             marker-end="url(#ah)"/>
+        <path class="d-line" d="M442 127 H488"            marker-end="url(#ah)"/>
+        <path class="d-line" d="M442 193 H488"            marker-end="url(#ah)"/>
+        <path class="d-line" d="M442 71 H466 V183 H488"   marker-end="url(#ah)"/>
+
+        <path class="d-loop" d="M688 61 C 730 61, 730 193, 688 193" marker-end="url(#ahb)"/>
+
+        <rect class="d-head" x="246" y="258" width="442" height="54" rx="5"/>
+        <text class="d-title" x="260" y="279">Analyst Portfolio Simulator</text>
+        <text class="d-sub"   x="260" y="297">recommendations replayed as real order executions, then scored on portfolio analytics</text>
+        <path class="d-line" d="M588 220 V258" marker-end="url(#ah)"/>
+
+        <path class="d-loop" d="M12 322 H40"/>
+        <text class="d-loop-t" x="48" y="326">analyst recommendations → trade suggestions</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===================== PLATFORMS ===================== -->
+  <section id="platforms">
+    <div class="sec-head">
+      <p class="eyebrow">What I own</p>
+      <h2>Three platforms, end to end</h2>
+      <p>Architecture, core functionality, data layer and day-to-day operations — used across the research, investment and operations desks of a SEBI-registered asset manager.</p>
+    </div>
+
+    <div class="platforms">
+
+      <article class="platform">
+        <header>
+          <span class="abbr">RAW</span>
+          <h3>Research Automation Works</h3>
+          <span class="users">~40 analysts &amp; IC</span>
+        </header>
+        <ul>
+          <li>Core research workspace on Django REST + React/TypeScript: research notes, quarterly results, financial statements, CIO decisions and company coverage across a ~2,600-company universe.</li>
+          <li><b>Analyst Portfolio Simulator</b> — replays each analyst's recommendations as real order executions against the firm's portfolio, then scores performance with the same analytics used for live funds. Research calls become measurable instead of anecdotal.</li>
+          <li>Role-based access with row-level security by country, sector and company; real-time collaborative comments over Django Channels WebSockets.</li>
+          <li>Automated intake through 32 scheduled jobs and 20+ scrapers: corporate announcements and actions, BSE insider trades, G-Sec yields, and management interviews transcribed with Whisper and summarised by Gemini.</li>
+        </ul>
+      </article>
+
+      <article class="platform">
+        <header>
+          <span class="abbr">RAW AI</span>
+          <h3>Retrieval assistant over the research corpus</h3>
+          <span class="users">RAG · Claude · Gemini</span>
+        </header>
+        <ul>
+          <li>RAG over proprietary research and public filings: concalls, annual reports and investor presentations parsed with Document AI and LlamaParse, chunked, embedded into pgvector, reranked, and answered with citations back to the source document.</li>
+          <li><b>Result Update Report pipeline</b> — drafts an analyst's quarterly result update from a company's concall transcript, investor presentation and earnings report PDF. A finely-grained section-wise prompt produces topline, margin, bottomline and segment performance, plus <b>actuals versus management guidance</b>, each section grounded in the source documents.</li>
+        </ul>
+      </article>
+
+      <article class="platform">
+        <header>
+          <span class="abbr">OAT</span>
+          <h3>Operation Automation Toolkit</h3>
+          <span class="users">~15 ops &amp; portfolio staff</span>
+        </header>
+        <ul>
+          <li><b>Order engine</b> — buy/sell/ETF calculators with T+1 cash and settlement logic, percentage-of-volume allocation and contract-note processing. Custodian order files are generated, validated and delivered automatically.</li>
+          <li><b>Trade Suggestions</b> — merges analyst recommendations raised in RAW with live portfolio positions to compute actionable trades, closing the loop from research call to execution.</li>
+          <li><b>Portfolio analytics</b> — XIRR/TWRR performance and benchmark reporting, management-fee billing, custody and fund-accountant reconciliation across PMS, AIF and GIFT-City IFSC mandates.</li>
+          <li>Integrations with Zerodha Kite, Interactive Brokers, Nuvama and Zoho CRM; an operations-checklist engine running 10 automated checks with Google Chat alerts; natural-language portfolio Q&amp;A via text-to-SQL, guarded by a SQL validator.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== INFRASTRUCTURE ===================== -->
+  <section id="infrastructure">
+    <div class="sec-head">
+      <p class="eyebrow">Underneath</p>
+      <h2>Data infrastructure &amp; tooling</h2>
+      <p>The shared layer all three platforms depend on, plus the CI tooling that keeps them honest.</p>
+    </div>
+
+    <div class="projects">
+
+      <article class="project">
+        <div>
+          <h3>Market Data Pipeline</h3>
+          <p class="stack">Python · Cloud Run · KiteConnect · IBKR · PostgreSQL</p>
+        </div>
+        <ul>
+          <li>Broker adapters that normalise two very different market-data sources behind one interface — KiteConnect for Indian listed equities, IBKR for international coverage — writing live and historical prices into PostgreSQL.</li>
+          <li>7 Cloud Run jobs covering daily, intraday and VWAP prices, IBKR prices and USD/INR rates, plus a shared Python library installed into all three platforms as their single market-data access layer.</li>
+          <li>Retired a dedicated always-on VM that held an 8.5-hour websocket connection, replacing it with scheduled quote pulls.<br><span class="win">− one standing point of failure, − its compute bill</span></li>
+        </ul>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Financial Data Pipeline</h3>
+          <p class="stack">Python · ACE Equity · PostgreSQL · Cloud Scheduler</p>
+        </div>
+        <ul>
+          <li>The firm's fundamental data store: quarterly and annual results and full financial statements loaded into PostgreSQL through the ACE Equity Excel plugin rather than a vendor data API.</li>
+          <li>Gives RAW and OAT direct SQL access to standardised financials for screening, valuation and analysis.<br><span class="win">saves lakhs per annum in vendor API licensing</span></li>
+        </ul>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Claude PR Review Bot</h3>
+          <p class="stack">Python · Docker · Claude API · Bitbucket Pipes</p>
+        </div>
+        <ul>
+          <li>A reusable Bitbucket Pipe that reviews every pull request in two stages: it first explores the repository with tools, then returns a structured assessment as inline PR comments.</li>
+          <li>Each repository's CLAUDE.md acts as its review rulebook. Versioned, tested, and running in CI across 5 production repositories.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills">
+    <div class="sec-head">
+      <p class="eyebrow">Toolkit</p>
+      <h2>Technical skills</h2>
+      <p>Domain knowledge sits alongside the stack — in capital markets the two are hard to separate.</p>
+    </div>
+
+    <dl class="ledger">
+      <div class="row"><dt>Languages</dt><dd>Python · TypeScript · JavaScript · SQL · HTML/CSS</dd></div>
+      <div class="row"><dt>Backend</dt><dd>Django · Django REST Framework · Django Channels (WebSockets) · scheduled batch jobs · REST APIs · OAuth 2.0 · JWT</dd></div>
+      <div class="row"><dt>Frontend</dt><dd>React · TypeScript · Vite · Material UI · AG Grid · Recharts · Vitest · React Testing Library</dd></div>
+      <div class="row"><dt>Data</dt><dd>PostgreSQL · pgvector · pandas · NumPy · SQL migrations · Selenium · Playwright · BeautifulSoup</dd></div>
+      <div class="row"><dt>AI / LLM</dt><dd>RAG pipelines · embeddings · reranking · prompt engineering · text-to-SQL · Claude · Gemini · OpenAI · Whisper · Document AI · LlamaParse</dd></div>
+      <div class="row"><dt>Cloud &amp; DevOps</dt><dd>Google Cloud (App Engine, Cloud Run, Cloud SQL, Cloud Storage, Cloud Scheduler, Cloud Build, Artifact Registry) · Docker · Bitbucket Pipelines · Git · LaunchDarkly</dd></div>
+      <div class="row"><dt>Testing</dt><dd>pytest · Factory Boy · unit / integration / end-to-end suites · coverage gates · blue-green deploys with one-step rollback</dd></div>
+      <div class="row"><dt>Capital markets</dt><dd>PMS, AIF and GIFT-City IFSC mandates · order management and execution workflow · T+1 cash and settlement · percentage-of-volume allocation · contract notes and custodian files · XIRR/TWRR and benchmark performance · management-fee billing · custody and fund-accountant reconciliation · corporate actions</dd></div>
+      <div class="row"><dt>Market data</dt><dd>Zerodha KiteConnect · Interactive Brokers · Nuvama · ACE Equity · BSE filings · G-Sec yields · USD/INR</dd></div>
+    </dl>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience">
+    <div class="sec-head">
+      <p class="eyebrow">Track record</p>
+      <h2>Experience &amp; education</h2>
+    </div>
+
+    <div class="timeline">
+      <article class="tl">
+        <div class="when">May 2024 — now</div>
+        <div>
+          <h3>Software Engineer</h3>
+          <p class="what">Sameeksha Capital — SEBI-registered boutique asset manager</p>
+          <p class="note">Own RAW, RAW AI and OAT end to end, along with the market and fundamental data pipelines that feed them. 12,000+ automated tests behind an 80% coverage gate, with Bitbucket CI/CD and blue-green App Engine deploys.</p>
+        </div>
+      </article>
+
+      <article class="tl">
+        <div class="when">Jan — Apr 2024</div>
+        <div>
+          <h3>Software Engineering Intern</h3>
+          <p class="what">Sameeksha Capital — converted to full-time</p>
+        </div>
+      </article>
+
+      <article class="tl">
+        <div class="when">Jul — Aug 2023</div>
+        <div>
+          <h3>Software Development Intern</h3>
+          <p class="what">TatvaSoft</p>
+          <p class="note">Built the frontend of a book-store web application in React.js.</p>
+        </div>
+      </article>
+
+      <article class="tl">
+        <div class="when">2020 — 2024</div>
+        <div>
+          <h3>B.E. Computer Engineering</h3>
+          <p class="what">L.D. College of Engineering, Ahmedabad</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="sec-head">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's talk</h2>
+      <p>Open to conversations about fintech platforms, investment-operations tooling and applied LLM systems.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a class="ccard" href="mailto:rathodkaransinh125@gmail.com">
+        <div class="k">Email</div>
+        <div class="v">rathodkaransinh125@gmail.com</div>
+      </a>
+      <a class="ccard" href="https://in.linkedin.com/in/karansinh-rathod-502383240" target="_blank" rel="noopener">
+        <div class="k">LinkedIn</div>
+        <div class="v">karansinh-rathod</div>
+      </a>
+      <a class="ccard" href="tel:+916353519944">
+        <div class="k">Phone</div>
+        <div class="v">+91 63535 19944</div>
+      </a>
+      <a class="ccard" href="resume.pdf">
+        <div class="k">Résumé</div>
+        <div class="v">Download PDF &nbsp;↓</div>
+      </a>
+      <div class="ccard">
+        <div class="k">Based in</div>
+        <div class="v">Ahmedabad, Gujarat, India</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Karansinh Rathod</span>
+    <span>Software Engineer · Fintech Platforms</span>
+  </footer>
+
+</div>
+</main>
+
+<script>
+(function () {
+  /* ---- theme toggle: resolve current, flip, remember ---- */
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('kr-theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var explicit = root.getAttribute('data-theme');
+    var current = explicit || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('kr-theme', next); } catch (e) {}
+  });
+
+  /* ---- nav active state ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var map = {};
+  links.forEach(function (a) {
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el) map[el.id] = a;
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('active'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('active');
+      });
+    }, { rootMargin: '-64px 0px -62% 0px', threshold: 0 });
+
+    Object.keys(map).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
